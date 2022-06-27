@@ -10,14 +10,14 @@
       
       
       
-        <link rel="canonical" href="https://box-project.github.io/box/symfony/">
+        <link rel="canonical" href="https://box-project.github.io/box/faq/">
       
       <link rel="icon" href="../img/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.8">
     
     
       
-        <title>Symfony support - Box Project</title>
+        <title>FAQ - Box Project</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#symfony-support" class="md-skip">
+        <a href="#faq" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Symfony support
+              FAQ
             
           </span>
         </div>
@@ -421,6 +421,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../symfony/" class="md-nav__link">
+        Symfony support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -433,12 +447,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Symfony support
+          FAQ
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Symfony support
+        FAQ
       </a>
       
         
@@ -457,15 +471,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#project-directory" class="md-nav__link">
-    Project directory
+  <a href="#what-is-the-canonical-way-to-write-a-cli-entry-file" class="md-nav__link">
+    What is the canonical way to write a CLI entry file?
   </a>
+  
+    <nav class="md-nav" aria-label="What is the canonical way to write a CLI entry file?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-shebang" class="md-nav__link">
+    The shebang
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-php_sapi-check" class="md-nav__link">
+    The PHP_SAPI check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autoloading-composer" class="md-nav__link">
+    Autoloading Composer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cache" class="md-nav__link">
-    Cache
+  <a href="#detecting-that-you-are-inside-a-phar" class="md-nav__link">
+    Detecting that you are inside a PHAR
   </a>
   
 </li>
@@ -474,20 +515,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        FAQ
-      </a>
     </li>
   
 
@@ -526,15 +553,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#project-directory" class="md-nav__link">
-    Project directory
+  <a href="#what-is-the-canonical-way-to-write-a-cli-entry-file" class="md-nav__link">
+    What is the canonical way to write a CLI entry file?
   </a>
+  
+    <nav class="md-nav" aria-label="What is the canonical way to write a CLI entry file?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-shebang" class="md-nav__link">
+    The shebang
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-php_sapi-check" class="md-nav__link">
+    The PHP_SAPI check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autoloading-composer" class="md-nav__link">
+    Autoloading Composer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cache" class="md-nav__link">
-    Cache
+  <a href="#detecting-that-you-are-inside-a-phar" class="md-nav__link">
+    Detecting that you are inside a PHAR
   </a>
   
 </li>
@@ -553,77 +607,100 @@
                 
 
 
-<h1 id="symfony-support">Symfony support</h1>
+<h1 id="faq">FAQ</h1>
 <ol>
-<li><a href="#project-directory">Project directory</a></li>
-<li><a href="#cache">Cache</a></li>
+<li><a href="#what-is-the-canonical-way-to-write-a-cli-entry-file">What is the canonical way to write a CLI entry file?</a></li>
+<li><a href="#the-shebang">The shebang</a></li>
+<li><a href="#the-php_sapi-check">The PHP_SAPI check</a></li>
+<li><a href="#autoloading-composer">Autoloading Composer</a></li>
+<li><a href="#detecting-that-you-are-inside-a-phar">Detecting that you are inside a PHAR</a></li>
 </ol>
-<h2 id="project-directory">Project directory</h2>
-<p>Symfony 5.1+ defines the "project dir" as the directory where the composer.json file is. Because box deletes it during PHAR compilation, you need to redefine it in your Kernel. It is usually located in <code>src/Kernel.php</code> and can be defined as follow: </p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<h2 id="what-is-the-canonical-way-to-write-a-cli-entry-file">What is the canonical way to write a CLI entry file?</h2>
+<p>A conventional CLI entry file looks like this (see bellow for further explanations):</p>
+<div class="highlight"><pre><span></span><code><span class="x">#!/usr/bin/env php</span>
+<span class="cp">&lt;?php</span>
 
-<span class="k">class</span> <span class="nc">Kernel</span> <span class="k">extends</span> <span class="nx">BaseKernel</span>
-<span class="p">{</span>
-<span class="o">...</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProjectDir</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../&#39;</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="k">namespace</span> <span class="nx">Acme</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="k">function</span> <span class="nf">in_array</span><span class="p">;</span>
+<span class="k">use</span> <span class="k">const</span> <span class="no">PHP_EOL</span><span class="p">;</span>
+<span class="k">use</span> <span class="k">const</span> <span class="no">PHP_SAPI</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">RuntimeException</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="k">false</span> <span class="o">===</span> <span class="nb">in_array</span><span class="p">(</span><span class="nx">PHP_SAPI</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;cli&#39;</span><span class="p">,</span> <span class="s1">&#39;phpdbg&#39;</span><span class="p">,</span> <span class="s1">&#39;embed&#39;</span><span class="p">],</span> <span class="k">true</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nx">PHP_EOL</span><span class="o">.</span><span class="s1">&#39;This app may only be invoked from a command line, got &quot;&#39;</span><span class="o">.</span><span class="nx">PHP_SAPI</span><span class="o">.</span><span class="s1">&#39;&quot;&#39;</span><span class="o">.</span><span class="nx">PHP_EOL</span><span class="p">;</span>
+
+    <span class="k">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
+
+<span class="p">(</span><span class="k">static</span> <span class="k">function</span> <span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">file_exists</span><span class="p">(</span><span class="nv">$autoload</span> <span class="o">=</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../../../autoload.php&#39;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// Is installed via Composer</span>
+        <span class="k">include_once</span> <span class="nv">$autoload</span><span class="p">;</span>
+
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">file_exists</span><span class="p">(</span><span class="nv">$autoload</span> <span class="o">=</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// Is installed locally</span>
+        <span class="k">include_once</span> <span class="nv">$autoload</span><span class="p">;</span>
+
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">RuntimeException</span><span class="p">(</span><span class="s1">&#39;Unable to find the Composer autoloader.&#39;</span><span class="p">);</span>
+<span class="p">})();</span>
+
+<span class="c1">// Execute the application</span>
 </code></pre></div>
-<h2 id="cache">Cache</h2>
-<p>What makes Symfony a bit special for shipping it into a PHAR is its compilation step. Indeed the Symfony container can
-be dumped depending on multiple parameters such the application environment, whether it is in debug mode or not and if
-the cache is fresh.</p>
-<p>A PHAR however is a readonly only environment, which means the container <em>cannot</em> be dumped once inside the PHAR. To
-prevent the issue, you need to make sure of the following:</p>
-<ul>
-<li>The cache is warmed up before being shipped within the PHAR</li>
-<li>The application within the PHAR is running in production mode</li>
-</ul>
-<p>To achieve this with the least amount of changes is to:</p>
-<ul>
-<li>Create the <code>.env.local.php</code> file by running the following command:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ composer dump-env prod
+<h3 id="the-shebang">The shebang</h3>
+<p>The shebang <code>#!/usr/bin/env php</code> is required to the auto-detection of the type of the script. This allows to use it as
+follows:</p>
+<div class="highlight"><pre><span></span><code>$ chmod +x bin/acme.php
+$ ./bin/acme.php
+$ php bin/acme.php <span class="c1"># still works</span>
+<span class="c1"># Without the shebang line, you can only use the latter</span>
 </code></pre></div>
-<p>This will ensure when loading the variables that your application is in production mode.</p>
-<ul>
-<li>Change the following part of the <code>composer.json</code> file:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;auto-scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;cache:clear&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;symfony-cmd&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;assets:install %PUBLIC_DIR%&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;symfony-cmd&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;post-install-cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">        </span><span class="s2">&quot;@auto-scripts&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">],</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;post-update-cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">        </span><span class="s2">&quot;@auto-scripts&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">]</span><span class="w"></span>
-<span class="p">},</span><span class="w"></span>
+<p>In other words it is not necessary, but a nice to have if you want to make your file executable.</p>
+<h3 id="the-php_sapi-check">The PHP_SAPI check</h3>
+<p>For PHP, available SAPIs are: Apache2 (mod_php), FPM, CGI, FastCGI and CLI. There is a few other variants but those are
+the most commons ones. For more information, see the <a href="https://www.php.net/manual/en/function.php-sapi-name.php">official PHP doc</a>.</p>
+<p>So the following:</p>
+<div class="highlight"><pre><span></span><code><span class="x">if (false === in_array(PHP_SAPI, [&#39;cli&#39;, &#39;phpdbg&#39;, &#39;embed&#39;], true)) {</span>
+<span class="x">    echo PHP_EOL.&#39;This app may only be invoked from a command line, got &quot;&#39;.PHP_SAPI.&#39;&quot;&#39;.PHP_EOL;</span>
+
+<span class="x">    exit(1);</span>
+<span class="x">}</span>
 </code></pre></div>
-<p>For:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;auto-scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;cache:clear&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;symfony-cmd&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;post-autoload-dump&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">        </span><span class="s2">&quot;@auto-scripts&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">]</span><span class="w"></span>
-<span class="p">},</span><span class="w"></span>
-</code></pre></div>
-<p>I.e.:</p>
+<p>is purely ot make sure your CLI application is not executed in a non CLI context (for example via a web server). Doing
+so prevents you to have to worry about web-server related vulnerabilities such as <a href="https://httpoxy.org/">HTTPoxy</a>.</p>
 <ul>
-<li>You skip the installation of assets (which you shouldn't need in the context of a CLI application)</li>
-<li>Trigger the auto-scripts, which includes the cache warming phase, on the Composer dump-autoload event</li>
+<li><code>cli</code> is the standard default you will get</li>
+<li><code>phpdbg</code> when executing PHP with <a href="https://www.php.net/manual/en/intro.phpdbg.php">PHPDBG</a></li>
+<li><code>embed</code> if you compile the PHP/ZE into another program</li>
 </ul>
-<p>This last part takes advantage of Box <a href="../configuration/#dumping-the-composer-autoloader-dump-autoload">dumping the autoloader</a> by default.</p>
+<h3 id="autoloading-composer">Autoloading Composer</h3>
+<p>When developing a CLI application, you generally only need to worry about your local autoloader:</p>
+<div class="highlight"><pre><span></span><code><span class="x">include_once __DIR__.&#39;/../vendor/autoload.php&#39;;</span>
+</code></pre></div>
+<p>However, if the application is also published as a Composer package, then the autoloader may be found in a different
+location:</p>
+<div class="highlight"><pre><span></span><code><span class="x">include_once __DIR__.&#39;/../../../autoload.php&#39;;</span>
+</code></pre></div>
+<p>In either cases however, it could be the autoloader file is missing (e.g. if the dependencies are not installed yet).
+So it is wise to wrap them in a <code>file_exist()</code> check and provide a user-friendly error when no autoloader could be
+found.</p>
+<h2 id="detecting-that-you-are-inside-a-phar">Detecting that you are inside a PHAR</h2>
+<p>The easiest way to know if your script is executed from within a PHAR is to run the following:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$isInPhar = &#39;&#39; !== Phar::running(false);</span>
+</code></pre></div>
+<p>See <a href="https://www.php.net/manual/en/phar.running.php">Phar::running()</a> for more information.</p>
 <p><br /></p>
 <hr />
 
-<p>« <a href="../docker/#docker-support">Docker support</a> • <a href="../faq/#faq">FAQ</a> »</p>
+<p>« <a href="../symfony/#symfony-support">Symfony supports</a> • <a href="/">Table of Contents</a> »</p>
 
               
             </article>
@@ -644,7 +721,7 @@ prevent the issue, you need to make sure of the following:</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Docker support" rel="prev">
+        <a href="../symfony/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Symfony support" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -653,26 +730,11 @@ prevent the issue, you need to make sure of the following:</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Docker support
+              Symfony support
             </div>
           </div>
         </a>
       
-      
-        
-        <a href="../faq/" class="md-footer__link md-footer__link--next" aria-label="Next: FAQ" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              FAQ
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
